@@ -1,3 +1,4 @@
 ---
 # vars file for influxdata.telegraf
 send_to_ip_address: "{{ lookup('file', '{{ role_path }}/vars/myip.txt') }}"
+# send_to_ip_address: "X.X.X.X"
