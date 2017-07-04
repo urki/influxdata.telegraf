@@ -1,0 +1,3 @@
+---
+# vars file for influxdata.telegraf
+get_localhost_ip: "{{ lookup('file', '{{ role_path }}/vars/myip.txt') }}"

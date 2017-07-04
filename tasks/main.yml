@@ -1,0 +1,49 @@
+# tasks file for influxdata.telegraf
+---
+    - copy:
+        src: "{{ role_path }}/vars/myip.txt"
+        dest: "{{ role_path }}/vars/previous_myip.txt"
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: get IP from localhost
+      shell: echo $(ip route get 1 | awk '{print $NF;exit}')>"myip.txt"
+      args:
+        chdir: "{{ role_path }}/vars/"
+
+
+    - apt_key:
+        url: "https://repos.influxdata.com/influxdb.key"
+        state: present
+
+    - apt_repository:
+        repo: deb https://repos.influxdata.com/{{ ansible_lsb.id|lower }} {{ ansible_lsb.codename|lower }} stable
+        state: present
+        filename: 'influxdb.list'
+
+    - name: update Repositories
+      apt:
+        update_cache: yes
+
+    - name: running apt-get dist-upgrade and remove Old Packages
+      apt:
+        upgrade: dist
+        autoremove: yes
+
+    - name: install telegraf
+      apt:
+        name: telegraf
+        state: latest
+
+    - service:
+        name: telegraf
+        state: started
+
+    - template:
+        src: templates/grafana.telegraf.conf.j2
+     #   src: /etc/telegraf/telegraf.d/grafana.conf
+        dest: /etc/telegraf/telegraf.conf
+        owner: root
+        group: root
+        mode: 0644

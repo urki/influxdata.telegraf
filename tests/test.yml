@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars_files:
+    - {{ role_path }}/vars/main.yml
+  roles:
+    - {{ role_path }}
