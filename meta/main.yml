@@ -1,3 +1,6 @@
+---
+allow_duplicates: no
+
 galaxy_info:
   author: urki
   description: install influxdata telegraf on ubuntu
@@ -13,7 +16,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
+  license: license (BSD, MIT)
 
   min_ansible_version: 2.1
 
