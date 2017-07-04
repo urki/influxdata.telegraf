@@ -3,7 +3,7 @@ allow_duplicates: no
 
 galaxy_info:
   author: urki
-  description: install influxdata telegraf on ubuntu
+  description: Installs and configures Influxdata Telegraf on Ubuntu
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value

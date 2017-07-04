@@ -13,6 +13,7 @@ Role Variables
 
 IP address of graphite server. Default IP is local machine IP in vars/main.yml. If you want other IP for graphite server overide
 in vars/main.yml
+IP address is used in templates/grafana.telegraf.conf.j2 in line 265
 
 Dependencies
 ------------
@@ -20,11 +21,16 @@ Dependencies
 Example Playbook
 ----------------
 
-Including an example of how to use your role:
+Including an example of how to use your role. Change X to IP address of graphite server
 
-    - hosts: servers
-      roles:
-         - { role: urki.influxdata.telegraf}
+```
+
+---
+- hosts: localhost
+  roles:
+     - { role: urki.influxdata-telegraf, send_to_ip_address: 'X.X.X.X' }
+
+```
 
 License
 -------
